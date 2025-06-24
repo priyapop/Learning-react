@@ -8,25 +8,18 @@ export const DerivedState = () => {
     { name: "Angles", age: 45 },
   ]);
 
-  // Derived state: count of users
-  console.log(users);
-  const userCount = users.length;
-  // Derived state: average age of users
-  const averageAge =
-    users.reduce((accum, curElem) => accum + curElem.age, 0) / userCount;
-
-  return (
-    <div className="main-div">
-      <h1>Users List</h1>
-      <ul>
-        {users.map((user, index) => (
+  return(
+    <div>
+      <ul>{
+          users.map((user,index) => {return(
           <li key={index}>
-            {user.name} - {user.age} years old
-          </li>
-        ))}
-      </ul>
-      <p>Total Users: {userCount}</p>
-      <p>Average Age: {averageAge}</p>
+          {user.name}-{user.age}years old
+        </li>
+          )
+         
+     })}
+     </ul>
     </div>
-  );
+  )
+  
 };
