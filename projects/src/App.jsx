@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import RandomColor from './components/RandomColorGenerator'
+
+import './index.css'
+
+import { ToggleSwitch } from './components/ToggleSwitch/app'
 
 function App() {
   
 
   return (
     <>
-   <RandomColor />
+   <ToggleSwitch />
     </>
   )
 }
