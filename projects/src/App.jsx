@@ -1,14 +1,14 @@
 
 import './index.css'
 
-import { ToggleSwitch } from './components/ToggleSwitch/app'
+import { TodoApp } from './components/ToDoApp/todo'
 
 function App() {
   
 
   return (
     <>
-   <ToggleSwitch />
+   <TodoApp />
     </>
   )
 }
