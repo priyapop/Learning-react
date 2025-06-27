@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './index.css'
+import "./index.css";
 import { Todoform } from "./form";
 import { TodoList } from "./todolist";
 import { Datetime } from "./datetime";
@@ -7,21 +7,39 @@ export const TodoApp = () => {
   const [task, setTask] = useState([]);
 
   const handleFormSubmit = (inputValue) => {
-    if (!inputValue) return;
-    if (task.includes(inputValue)) {
-      return;
-    }
-    setTask((prev) => [...prev, inputValue]);
+    const { id, content, checked } = inputValue;
+    if (!content) return;
+    // if (task.includes(inputValue)) {
+    //   return;
+    // }
+    const ifTodoContentMatched = task.find(
+      (currentTask) => currentTask.content === content
+    );
+    if (ifTodoContentMatched) return;
+    setTask((prev) => [...prev, { id, content, checked }]);
   };
 
   const handleDelete = (value) => {
     //task.splice(setTask,1)
-    const updatedTask = task.filter((currentTask) => currentTask != value);
+    const updatedTask = task.filter(
+      (currentTask) => currentTask.content != value
+    );
     setTask(updatedTask);
   };
 
   const handleDeleteAll = () => {
     setTask([]);
+  };
+
+  const handleChecked = (content) => {
+    const updatedTask = task.map((currentTask) => {
+      if (currentTask.content === content) {
+        return { ...currentTask, checked: !currentTask.checked };
+      } else {
+        return currentTask;
+      }
+    });
+    setTask(updatedTask);
   };
 
   return (
@@ -33,12 +51,14 @@ export const TodoApp = () => {
       <Todoform onAddTodo={handleFormSubmit} />
       <section className="unorderList">
         <ul>
-          {task.map((currentTask, index) => {
+          {task.map((currentTask) => {
             return (
               <TodoList
-                key={index}
-                data={currentTask}
+                key={currentTask.id}
+                data={currentTask.content}
+                checked={currentTask.checked}
                 onHandleDelete={handleDelete}
+                onHandleChecked={handleChecked}
               />
             );
           })}

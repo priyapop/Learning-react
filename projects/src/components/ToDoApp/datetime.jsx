@@ -7,7 +7,7 @@ export const Datetime = () => {
       const now = new Date();
       const formattedDate = now.toLocaleDateString();
       const formattedTime = now.toLocaleTimeString();
-      setDateTime(`${formattedDate}-${formattedTime}`);
+      setDateTime(`${formattedDate} - ${formattedTime}`);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
